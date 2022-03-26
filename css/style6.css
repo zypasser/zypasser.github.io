@@ -1,0 +1,194 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'wang';
+    src: url('../css/王汉宗特明体繁.woff') format("woff"), url('../css/王汉宗特明体繁.ttf') format("truetype"), url('../css/王汉宗特明体繁.woff') format("embedded-opentype")
+}
+
+
+/*工具列*/
+
+#toolbar {
+    width: 100%;
+    height: 50px;
+    background-color: rgb(230, 230, 230);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+#toolbar .tool-btn:hover {
+    cursor: pointer;
+    filter: invert(0.3);
+}
+
+#toolbar .tool-btn {
+    width: 30px;
+    height: 30px;
+    margin: 10px 15px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#prePage {
+    background: url(../icon/arrow-left-circle.svg);
+    filter: invert(0.5);
+}
+
+#nextPage {
+    background-image: url(../icon/arrow-right-circle.svg);
+    filter: invert(0.5);
+}
+
+#exit {
+    background-image: url(../icon/x-circle.svg);
+    filter: invert(0.5);
+}
+
+#line {
+    width: 1px;
+    height: 30px;
+    margin: 10px 15px;
+    border-left: 1px solid #aaa;
+}
+
+#pageInput {
+    width: 45px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    margin: 9px 2px 9px 15px;
+    text-align: center;
+}
+
+#allPage {
+    width: fit-content;
+    height: 30px;
+    line-height: 30px;
+    margin: 9px 15px 9px 2px;
+}
+
+
+/*內頁*/
+
+.book-container {
+    overflow: hidden;
+    background-color: whitesmoke;
+    height: calc(100vh - 50px);
+}
+
+#flipbook {
+    user-select: none;
+    margin: calc(50vh - 285px) auto;
+}
+
+#flipbook .custom-page {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+#flipbook .custom-page.reverse {
+    flex-direction: column-reverse;
+}
+
+#flipbook .custom-page>div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 30px;
+}
+
+#flipbook .custom-page>div.center-v {
+    justify-content: center;
+}
+
+#flipbook .custom-page.top-100 {
+    justify-content: unset;
+    padding-top: 100px;
+}
+
+#flipbook .custom-page p {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 12px;
+    font-family: 'wang';
+    font-size: 6px;
+    line-height: 13px;
+    color: #777777;
+    text-align: justify;
+}
+
+#flipbook .custom-page .cover-title {
+    font-size: 25px;
+    color: #445A72;
+    line-height: 35px;
+    margin: 0;
+}
+
+#flipbook .custom-page .cover-p {
+    font-size: 11px;
+    line-height: 21px;
+}
+
+#flipbook .custom-page .title {
+    font-size: 21px;
+    color: #445A72;
+    line-height: 31px;
+}
+
+#flipbook .custom-page .center-p {
+    width: auto;
+}
+
+#flipbook .custom-page img {
+    width: 100%;
+    object-fit: contain;
+}
+
+
+/*---------------------------------------------------------*/
+
+#flipbook .hard {
+    background: rgb(190, 190, 190) !important;
+    color: rgb(90, 90, 90);
+    font-weight: bold;
+    -webkit-box-shadow: inset 0 0 5px #666;
+    -moz-box-shadow: inset 0 0 5px #666;
+    -o-box-shadow: inset 0 0 5px #666;
+    -ms-box-shadow: inset 0 0 5px #666;
+    box-shadow: inset 0 0 5px #666;
+}
+
+#flipbook .odd {
+    background-image: -webkit-linear-gradient(right, #EAE6E4 95%, #C4C4C4 100%);
+    background-image: -moz-linear-gradient(right, #EAE6E4 95%, #C4C4C4 100%);
+    background-image: -ms-linear-gradient(right, #EAE6E4 95%, #C4C4C4 100%);
+    background-image: -o-linear-gradient(right, #EAE6E4 95%, #C4C4C4 100%);
+    background-image: linear-gradient(right, #EAE6E4 95%, #C4C4C4 100%);
+}
+
+#flipbook .even {
+    background-image: -webkit-linear-gradient(left, #EAE6E4 95%, #dadada 100%);
+    background-image: -moz-linear-gradient(left, #EAE6E4 95%, #dadada 100%);
+    background-image: -ms-linear-gradient(left, #EAE6E4 95%, #dadada 100%);
+    background-image: -o-linear-gradient(left, #EAE6E4 95%, #dadada 100%);
+    background-image: linear-gradient(left, #EAE6E4 95%, #dadada 100%);
+}
+
+#flipbook .page-wrapper {
+    -webkit-perspective: 2000px;
+    -moz-perspective: 2000px;
+    -ms-perspective: 2000px;
+    perspective: 2000px;
+}

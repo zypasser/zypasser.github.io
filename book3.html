@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="generator" content="Mobirise v4.3.5, mobirise.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="icon/alt.svg" type="image/x-icon">
+    <meta name="description" content="網頁描述">
+    <title>圖文混和(複)電子書範例</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="book-container">
+        <div id="flipbook-img" class="mx-auto">
+            <!--中文封面-->
+            <div>
+                <div class="custom-img-page-h">
+                    <img src="img/cover.jpg" class="cover-l">
+                    <p class="title-r">手寫圖文</p>
+                    <p class="title-sub-r">handwriting</p>
+                </div>
+            </div>
+            <div>
+                <div class="custom-img-page-h">
+                    <img src="img/007.jpg" class="cover-r">
+                    <!--<p class="mark-lg-l">我是一隻喵</p>-->
+                    <p class="p-l">「你笑起來真像好天氣。」 <br> ───簡媜《煙波藍》
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="custom-img-page-h">
+                    <img src="img/001.jpg" class="cover-l">
+                    <p class="p-r">「如果不知道要怎樣活下去， <br> 就為了我而活下去吧！」 
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="custom-img-page-h">
+                    <img src="img/009.jpg" class="cover-r">
+                    <p class="p-l">願你所有的堅持都得償所願， <br> 放輕鬆盡力而為，努力過就無愧啦。
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="custom-img-page-h">
+                    <img src="img/002.jpg" class="cover-l">
+                    <p class="p-r">我忽然鼻子一酸， <br> 終於理解了媽媽的那一句 <br> 『一輩子太長了』。 
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="custom-img-page-h">
+                    <img src="img/6.png" class="cover-r">
+                    <p class="title-l">謝謝觀賞</p>
+                </div>
+            </div>-->
+        </div>
+    </div>
+    <div id="toolbar">
+        <div id="prePage" class="tool-btn"></div>
+        <input type="text" id="pageInput">
+        <div id="allPage"></div>
+        <div id="nextPage" class="tool-btn"></div>
+        <div id="line"></div>
+        <a id="exit" href="index.html" class="tool-btn"></a>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/turn.min.js"></script>
+    <script>
+        //初始設定
+        $(document).ready(function() {
+            //建立架構
+            $("#flipbook-img").turn({            
+                width: 855,
+                height: 570,
+                display: "single",
+            });
+            //取得所有頁數
+            var allPage = $('#flipbook-img').turn('pages');
+            //設定所有頁面(數字)
+            $('#allPage').text('/' + allPage);
+            //設定現在頁面(輸入框)
+            $('#pageInput').val(1);
+            //適應螢幕
+            //resize();
+        });
+        //下一頁
+        $('#nextPage').click(function() {
+            //執行下一頁
+            $("#flipbook-img").turn('next');
+            //取得現在頁面
+            var nowPage = $('#flipbook-img').turn('page');
+            //設定現在頁面(輸入框)
+            $('#pageInput').val(nowPage);
+        });
+        //上一頁
+        $('#prePage').click(function() {
+            //執行上一頁
+            $("#flipbook-img").turn('previous');
+            //取得現在頁面
+            var nowPage = $('#flipbook-img').turn('page');
+            //設定現在頁面(輸入框)
+            $('#pageInput').val(nowPage);
+        });
+        //現在頁面被輸入
+        $('#pageInput').keypress(function(e) {
+            //檢查是否為ASCII13碼(換行)
+            if (e.charCode == 13) {
+                //取得輸入數值
+                var inputKey = $('#pageInput').val();
+                //取消聚焦(focus)
+                $('#pageInput').blur();
+                //將輸入數值轉換為數字
+                inputKey = parseInt(inputKey);
+                //取得所有頁數
+                var allPage = $('#flipbook-img').turn('pages');
+                //若輸入的不是數值跳出警告訊息
+                if (isNaN(inputKey)) {
+                    alert("請輸入數字");
+                    //若輸入的超出範圍則跳出警告訊息
+                } else if (inputKey > allPage || inputKey < 1) {
+                    alert("請輸入正確範圍內");
+                    //若都符合則執行切換頁面
+                } else {
+                    $('#flipbook-img').turn('page', inputKey);
+                }
+            }
+        });
+        //當用滑鼠切換畫面時
+        $("#flipbook-img").bind("turning", function(event,  page,  view)  {
+            //設定現在頁面(輸入框)
+            $('#pageInput').val(page);
+        });
+        //重新調整大小
+        /*
+        $(window).resize(function() {
+                resize();
+            })
+            function resize() {
+                if ($(document).width() <= 800) {
+                    $("#flipbook").turn("size", 380, 285);
+                } else {
+                    $("#flipbook").turn("size", 1200, 800);
+                }
+        }*/
+    </script>
+</body>
+
+</html>
