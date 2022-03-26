@@ -261,13 +261,13 @@
 #flipbook-img .custom-img-page-h img.cover-l {
     height: 100%;
     position: absolute;
-    right: 249.5px;
+    right: 400px;
 }
 
 #flipbook-img .custom-img-page-h img.cover-r {
     height: 100%;
     position: absolute;
-    left: 249.5px;
+    left: 400px;
 }
 
 #flipbook-img .custom-img-page-h img.img-r {
